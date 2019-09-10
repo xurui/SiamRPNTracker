@@ -2,7 +2,7 @@
 
 A Libtorch implementation of the SiamRPN tracker algorithm described in paper High Performance Visual Tracking with Siamese Region Proposal Network. This project is inspired by the pytorch version, I rewritten it with C++.
 
-
+![image](https://github.com/xurui/SiamRPNTracker/tree/master/model）
 
 # Requirements
 1. LibTorch v1.0.0
