@@ -42,7 +42,7 @@ int main(int argc, char** argv) {
 
     int f = 1;
     std::string img_file_name = path + "/img/" + cv::format("%04d", f) + ".jpg";
-    cv::Mat frame = cv::imread(img_file_name, CV_LOAD_IMAGE_UNCHANGED);
+    cv::Mat frame = cv::imread(img_file_name);
     cv::Mat frameDraw;
     frame.copyTo(frameDraw);
     if (!frame.data) {
@@ -85,7 +85,7 @@ int main(int argc, char** argv) {
         f++;
         readGroundTruthFromFile(groundtruth, bboxGroundtruth);
         img_file_name = path + "/img/" + cv::format("%04d", f) + ".jpg";
-        frame = cv::imread(img_file_name, CV_LOAD_IMAGE_UNCHANGED);
+        frame = cv::imread(img_file_name);
         if (!frame.data) {
             break;
         }

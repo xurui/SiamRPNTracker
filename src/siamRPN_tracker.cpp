@@ -185,8 +185,8 @@ void SiamRPNTracker::update(const cv::Mat& img, cv::Rect2d& box) {
     pos_.y = std::min(pos_.y, img.rows - 1.f);
 
     float lr = response_vec.at(id) * cfg_.lr;
-    target_sz_w_ = (1 - lr) * base_target_sz_w_ + lr * offset_w;
-    target_sz_h_ = (1 - lr) * base_target_sz_h_ + lr * offset_h;
+    target_sz_w_ = (1 - lr) * target_sz_w_ + lr * offset_w;
+    target_sz_h_ = (1 - lr) * target_sz_h_ + lr * offset_h;
 
     target_sz_w_ = std::max(target_sz_w_, 10.f);
     target_sz_h_ = std::max(target_sz_h_, 10.f);
@@ -218,7 +218,7 @@ std::vector<float> SiamRPNTracker::createPenalty(const float& target_w, const fl
         auto dst_sz = padded_sz(offsets[i].w, offsets[i].h);
         auto change_sz = larger_ratio(dst_sz / src_sz);
 
-        float src_ratio = target_h / target_w;
+        float src_ratio = target_w / target_h;
         float dst_ratio = offsets[i].w / offsets[i].h;
         float change_ratio = larger_ratio(dst_ratio / src_ratio);
         result.emplace_back(std::exp(-(change_ratio * change_sz - 1) * cfg_.penalty_k));
@@ -282,7 +282,7 @@ cv::Mat SiamRPNTracker::getSamplePatch(const cv::Mat im, const cv::Point2f posf,
     sample_sz.height = std::max(std::round(sample_sz.height), 2.0);
 
     cv::Point pos2(pos.x - std::floor((sample_sz.width + 1) / 2), pos.y - std::floor((sample_sz.height + 1) / 2));
-    cv::Mat im_patch = subwindow(new_im, cv::Rect(pos2, sample_sz), IPL_BORDER_REPLICATE);
+    cv::Mat im_patch = subwindow(new_im, cv::Rect(pos2, sample_sz), cv::BORDER_REPLICATE);
 
     cv::Mat resized_patch;
     if (im_patch.cols == 0 || im_patch.rows == 0) {
