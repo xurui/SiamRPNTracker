@@ -23,7 +23,7 @@ make;
 ```
 
 # Quick Start
-1. Download traced model files detect.pt and template.pt from [Baidu Yun](https://pan.baidu.com/s/1KRPXsHMfxkdzlxrru11-Mg) 
+1. Download traced model files detect.pt and template.pt from [Baidu Yun](https://pan.baidu.com/s/1KRPXsHMfxkdzlxrru11-Mg) [Google Drive](https://drive.google.com/drive/folders/1DxQPgbjk5V7bMG0NOrH5dhqfVd03CE1o?usp=sharing)
 , and put the file under path/to/SiamRPNTracker/model.
 2. run 
 ```
